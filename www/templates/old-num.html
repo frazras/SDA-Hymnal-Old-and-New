@@ -1,0 +1,34 @@
+<ion-view hide-nav-bar='false' view-title="Search Hymns by Number">
+  <ion-content class="padding">
+
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input class="hymnNum" type="text" placeholder="Enter Hymn #" ng-model="hymnNum" ng-disabled="true" value="">
+    </label>
+
+  <div class="row hymn-keyboard">
+    <div class="col myButton button button-outline button-dark" id="button_1" ng-click="numberButton('1')">1</div>
+    <div class="col myButton button button-outline button-dark" id="button_2" ng-click="numberButton('2')">2</div>
+    <div class="col myButton button button-outline button-dark" id="button_3 " ng-click="numberButton('3')">3</div>
+  </div>
+  <div class="row hymn-keyboard">
+    <div class="col myButton button button-outline button-dark" id="button_4" ng-click="numberButton('4')">4</div>
+    <div class="col myButton button button-outline button-dark" id="button_5" ng-click="numberButton('5')">5</div>
+    <div class="col myButton button button-outline button-dark" id="button_6" ng-click="numberButton('6')">6</div>
+  </div>
+  <div class="row hymn-keyboard">
+    <div class="col myButton button button-outline button-dark" id="button_7" ng-click="numberButton('7')">7</div>
+    <div class="col myButton button button-outline button-dark" id="button_8" ng-click="numberButton('8')">8</div>
+    <div class="col myButton button button-outline button-dark" id="button_9" ng-click="numberButton('9')">9</div>
+  </div>
+  <div class="row hymn-keyboard">
+    <div class="col myButton ion-close-circled button button-outline button-dark" ng-click="hymnNumberClear()"></div>
+    <div class="col myButton button button-outline button-dark" id="button_0" ng-click="numberButton('0')">0</div>
+    <div class="col myButton ion-backspace button button-outline button-dark" ng-click="hymnNumberDelete()"></div>
+  </div>
+  <div class="row hymn-keyboard">
+    <div class="col myButton button button-outline button-dark" ng-click="hymnNumberGo()">GO</div>
+  </div>
+
+  </ion-content>
+</ion-view>

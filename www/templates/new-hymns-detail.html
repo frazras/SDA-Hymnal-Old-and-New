@@ -1,0 +1,24 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<!--ion-header-bar  class="bar bar-subheader">
+  <button class="button col-33 icon ion-play" ng-click="play({{hymn.number}})">Play </button>
+  <button class="button miggle col-33 icon ion-ios-pause" ng-click="pause()">Pause </button>
+  <button class="button col-33 icon ion-stop" ng-click="stop()">Stop </button>
+</ion-header-bar -->
+<ion-header-bar class="bar bar-subheader">
+  <h2 class="title" style='left:0 !important; right:0 !important; color:red; font-size:46px'>{{hymn.number}}</h2>
+  <button class="button icon ion-android-arrow-back" ng-hide="{{hymn.isPrevDisabled}}" ng-click="skip('prev')">{{hymn.number-1}} </button>
+  <button class="button icon ion-android-arrow-forward" ng-hide="{{hymn.isNextDisabled}}" ng-click="skip('next')">{{hymn.number+1}} </button>
+</ion-header-bar>
+
+<ion-view  view-title="{{hymn.title}}" has-subheader=true has-header=true >
+  <ion-content class="padding" scroll="true">
+    <h3 class="hymnTitle" data-fittext="1" data-fittext-max="15">{{hymn.title}}</h3>
+    <p class="hymnBody"ng-bind-html="hymn.body">
+    </p>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,38 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-dark">
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="New Hymnal#" icon-off="ion-ios-grid-view-outline" icon-on="ion-pound" href="#/tab/new-num">
+    <ion-nav-view name="tab-new-num"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Chats Tab -->
+  <ion-tab title="New Search" icon-off="ion-ios-search" icon-on="ion-search" href="#/tab/new-list">
+    <ion-nav-view name="tab-new-list"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab >
+  <ion-tab title="Settings" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab -->
+  <!-- Favourites Tab -->
+  <!-- ion-tab title="Favourites" icon-off="ion-ios-heart-outline" icon-on="ion-heart" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab -->
+
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="Old Hymnal#" icon-off="ion-ios-grid-view-outline" icon-on="ion-pound" href="#/tab/old-num">
+    <ion-nav-view name="tab-old-num"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Chats Tab -->
+  <ion-tab title="Old Search" icon-off="ion-ios-search" icon-on="ion-search" href="#/tab/old-list">
+    <ion-nav-view name="tab-old-list"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

@@ -1,0 +1,126 @@
+	.hymn-keyboard .myButton{
+	height: 110px;
+	margin: 5px;
+	font-size: 40px;
+    text-align: center;
+    line-height: 110px;
+}
+
+.hymnNum{
+    font-size: 20px !important;
+    font-weight: bold;
+    line-height: 20px !important;
+    height: 30px !important;
+    color: #000 !important;
+}
+
+.hymnBody {
+    line-height: 6.5vw;
+    font-size: 6vw;
+}
+.hymnTitle {
+    line-height: 7vw;
+    font-size: 7vw;
+    margin-bottom: 20px;
+		font-weight: bolder;
+}
+.myButton {
+    font-weight:bold;
+}
+/*iPhone 4/4s*/
+@media only screen and (max-device-width : 320px)and ( min-device-height: 480px ) and (orientation: portrait){
+	.hymn-keyboard .myButton{
+		height: 52px;
+		margin: 5px;
+		font-size: 34px;
+        line-height: 42px;
+	}
+}
+@media only screen and (max-device-width : 480px) and (orientation: landscape){
+	.hymn-keyboard .myButton{
+		height: 30px;
+        min-height: 30px;
+        font-size: 14px;
+        line-height: 14px;
+        margin: 2px;
+	}
+}
+
+/*iPhone 5/5s*/
+@media only screen and ( min-device-height: 481px ) and ( max-device-height: 968px )and (orientation: portrait){
+    .hymn-keyboard .myButton{
+    	height: 66px;
+        line-height: 56px
+    }
+}
+@media only screen and ( min-device-height: 320px )and ( min-device-width: 481px ) and ( max-device-width: 568px )and (orientation: landscape){
+    .hymn-keyboard .myButton{
+    	height: 30px;
+        min-height: 30px;
+    	font-size: 14px;
+        line-height: 14px;
+		margin: 2px;
+    }
+}
+
+
+/*iPhone 6*/
+/*@media only screen and ( min-device-height: 569px ) and ( max-device-height: 667px )and (orientation: portrait){
+    .hymn-keyboard .myButton{
+    	height: 88px;
+        line-height: 80px;
+    }
+}*/
+/*iPhone 6*/
+@media only screen and ( min-device-height: 320px )and ( min-device-width: 569px ) and ( max-device-width: 667px )and (orientation: landscape){
+    .hymn-keyboard .myButton{
+    	height: 38px;
+        min-height: 38px;
+    	font-size: 14px;
+        line-height: 14px;
+		margin: 3px;
+    }
+}
+/*iPhone 6 Plus*/
+@media only screen and ( min-device-height: 668px ) and ( max-device-height: 736px ){
+    .hymn-keyboard .myButton{
+    	height: 100px;
+        line-height: 90px;
+    }
+}
+@media only screen and ( min-device-height: 320px )and ( min-device-width: 668px ) and ( max-device-width: 736px )and (orientation: landscape){
+    .hymn-keyboard .myButton{
+        height: 45px;
+        min-height: 38px;
+        font-size: 14px;
+        line-height: 14px;
+        margin: 3px;
+    }
+}
+
+@media only screen and ( max-device-height: 1024 px )and ( max-device-width: 1025px ){
+    .hymn-keyboard .myButton{
+        height: 45px;
+        min-height: 38px;
+        font-size: 14px;
+        line-height: 14px;
+        margin: 3px;
+    }
+}
+.nav-bar-tabs-top.hide + .view-container > .tabs-top > .tabs, .tabs.tabs-top {
+  top: 0 !important;
+}
+
+.nav-bar-tabs-top.hide + .view-container > .tabs-top > .tab-content .pane .has-tabs-top {
+  top: 49px !important;
+}
+
+.miggle{
+    right: 50%;
+    position: absolute;
+    margin-right: -30px;
+}
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: lime;
+}
