@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.caribchoruses816673" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>caribChoruses</name>
+  <name>SDANewwAndOldHymnal</name>
   <description>
-        An Ionic Framework and Cordova project.
+        The New and Old Seventh Day Adventist Church Hymnal.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="rohanasmith@gmail.com" href="http://twitter.com/frazras">
+      A Rayaxis Production
     </author>
   <content src="index.html"/>
   <access origin="*"/>

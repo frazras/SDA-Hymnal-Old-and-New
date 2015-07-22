@@ -1,7 +1,7 @@
 {
-  "name": "caribchoruses",
+  "name": "SDANewwAndOldHymnal",
   "version": "1.0.0",
-  "description": "caribChoruses: An Ionic project",
+  "description": "SDANewwAndOldHymnal: The New and Old Seventh Day Adventist Church Hymnal.",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
