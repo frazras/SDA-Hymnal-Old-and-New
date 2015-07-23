@@ -1,7 +1,7 @@
 {
-  "name": "SDANewwAndOldHymnal",
+  "name": "SDANewAndOldHymnal",
   "version": "1.0.0",
-  "description": "SDANewwAndOldHymnal: The New and Old Seventh Day Adventist Church Hymnal.",
+  "description": "SDANewAndOldHymnal: The New and Old Seventh Day Adventist Church Hymnal.",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
@@ -17,5 +17,8 @@
   "cordovaPlugins": [
     "org.apache.cordova.file",
     "org.apache.cordova.media"
+  ],
+  "cordovaPlatforms": [
+    "ios"
   ]
 }
