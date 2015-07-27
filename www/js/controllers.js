@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['ngCordova'])
   		}
   	}
 })
-.controller('OldList', function($scope, hymnIndexFactory, $ionicFilterBar) {
+.controller('OldList', function($scope, hymnIndexFactory, $ionicFilterBar, $filter) {
           $scope.data ={};
           $scope.data.searchQuery = "";
           $scope.hymns = [];
@@ -50,19 +50,27 @@ angular.module('starter.controllers', ['ngCordova'])
 			        update: function (filteredItems) {
 								$scope.hymns = filteredItems;
 			        },
-			        filterProperties: ['title','body']
+							filter:$filter('filterPunctuation')
 			      });
 			    };
           $scope.clearSearch = function() {
 		    		$scope.data.searchQuery = "";
 		  		};
 })
-.controller('NewList', function($scope, hymnIndexFactory) {
+.controller('NewList', function($scope, hymnIndexFactory, $ionicFilterBar, $filter) {
           $scope.data ={};
           $scope.data.searchQuery = "";
           $scope.hymns = [];
           $scope.hymns=hymnIndexFactory.allNew();
-
+					$scope.showFilterBar = function () {
+			      filterBarInstance = $ionicFilterBar.show({
+			        items: $scope.hymns,
+			        update: function (filteredItems) {
+								$scope.hymns = filteredItems;
+			        },
+							filter:$filter('filterPunctuation')
+			      });
+			    };
           $scope.clearSearch = function() {
 		    $scope.data.searchQuery = "";
 		  };

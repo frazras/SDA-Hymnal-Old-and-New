@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     .state('tab.new-list-detail', {
       url: '/new-list/:number/:version/:isPrevDisabled/:isNextDisabled',
       views: {
-        'tab-new-list-detail': {
+        'tab-new-list': {
           templateUrl: 'templates/new-hymns-detail.html',
           controller: 'NewHymnsDetailCtrl'
         }
@@ -117,17 +117,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     }
   })
 
-
-/*  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
-*/
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/new-num');
 

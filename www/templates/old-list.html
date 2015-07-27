@@ -6,18 +6,7 @@
                 ng-click="showFilterBar()"></button>
     </div>
   </ion-header-bar>
-
   <ion-content>
-  <!-- div class="bar bar-header bar-dark item-input-inset">
-  <label class="item-input-wrapper">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input class="search-bar" type="search" placeholder="Search" ng-model="data.searchQuery">
-    <div ng-click="clearSearch()"><i class="clear-search icon ion-ios-close-empty"></i></div>
-  </label>
-  <button class="button button-clear" ng-click="clearSearch()">
-    Cancel
-  </button>
-</div -->
     <ion-list>
       <ion-item class="item-remove-animate item-avatarX item-icon-right" collection-repeat="hymn in hymns | filterPunctuation: data.searchQuery" type="item-text-wrap" href="#/tab/old-list/{{hymn.number}}/oldList/{{hymn.isPrevDisabled}}/{{hymn.isNextDisabled}}">
         <!-- img ng-src="{{chat.face}}" -->
