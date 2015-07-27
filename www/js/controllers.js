@@ -46,8 +46,8 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.hymns=hymnIndexFactory.allOld();
 
           $scope.clearSearch = function() {
-		    $scope.data.searchQuery = "";
-		  };
+		    		$scope.data.searchQuery = "";
+		  		};
 })
 .controller('NewList', function($scope, hymnIndexFactory) {
           $scope.data ={};
@@ -70,7 +70,7 @@ angular.module('starter.controllers', ['ngCordova'])
 	else if(($scope.hymn.number>694) && ($stateParams.version=='newList' || $stateParams.version == 'newNum')){$scope.hymn.isNextDisabled="true";}
 
    	if(hymn.body.constructor.name!="TrustedValueHolderType"){
-  		$scope.hymn.body = $sce.trustAsHtml(hymn.body);
+  		$scope.hymn.bodyTrusted = $sce.trustAsHtml(hymn.body);
 	}
 	$scope.skip = function(nextPrev) {
 		if(nextPrev=='next'){
@@ -160,7 +160,7 @@ angular.module('starter.controllers', ['ngCordova'])
 		else if(($scope.hymn.number>694) && ($stateParams.version=='newList' || $stateParams.version == 'newNum')){$scope.hymn.isNextDisabled="true";}
 
    	if(hymn.body.constructor.name!="TrustedValueHolderType"){
-  		$scope.hymn.body = $sce.trustAsHtml(hymn.body);
+  		$scope.hymn.bodyTrusted = $sce.trustAsHtml(hymn.body);
 		}
 
 	$scope.skip = function(nextPrev) {
@@ -216,4 +216,19 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.settings = {
     enableFriends: true
   };
+})
+.filter('filterPunctuation', function() {
+  return function(items, searchTerm) {
+    if (!searchTerm || '' === searchTerm) {
+      return items;
+    }
+debugger;
+    searchTerm = searchTerm.replace(/[^\w\s]|_/g, "").toLowerCase();
+
+    return items.filter(function(element, index, array) {
+      var title = element.title.replace(/(<([^>]+)>)/ig, "").replace(/[^\w\s]|_/g, "").toLowerCase();
+      var body = element.body.replace(/(<([^>]+)>)/ig, "").replace(/[^\w\s]|_/g, "").toLowerCase();
+      return title.includes(searchTerm) || body.includes(searchTerm);
+    });
+  }
 });

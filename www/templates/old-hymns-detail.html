@@ -13,7 +13,7 @@
 <ion-view  view-title="{{hymn.title}}" has-subheader=true has-header=true >
   <ion-content class="padding" scroll="true">
     <h3 class="hymnTitle" data-fittext="1" data-fittext-max="15">{{hymn.title}}</h3>
-    <p class="hymnBody"ng-bind-html="hymn.body">
+    <p class="hymnBody"ng-bind-html="hymn.bodyTrusted">
     </p>
   </ion-content>
 </ion-view>
