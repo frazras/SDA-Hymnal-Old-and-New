@@ -1,6 +1,14 @@
-<ion-view class="bar-black" hide-nav-bar='false' view-title="Search Hymns">
+<ion-view class="bar-black" hide-nav-bar='true'>
+  <ion-header-bar class="bar-black top-search">
+    <h1 class="title">Search Hymns</h1>
+    <div class="buttons"><i class="ion-arrow-right-c searcharrow"></i>
+        <button class="button button-icon ion-android-search search-button"
+                ng-click="showFilterBar()"></button>
+    </div>
+  </ion-header-bar>
+
   <ion-content>
-  <div class="bar bar-header bar-dark item-input-inset">
+  <!-- div class="bar bar-header bar-dark item-input-inset">
   <label class="item-input-wrapper">
     <i class="icon ion-search placeholder-icon"></i>
     <input class="search-bar" type="search" placeholder="Search" ng-model="data.searchQuery">
@@ -9,7 +17,7 @@
   <button class="button button-clear" ng-click="clearSearch()">
     Cancel
   </button>
-</div>
+</div -->
     <ion-list>
       <ion-item class="item-remove-animate item-avatarX item-icon-right" collection-repeat="hymn in hymns | filterPunctuation: data.searchQuery" type="item-text-wrap" href="#/tab/old-list/{{hymn.number}}/oldList/{{hymn.isPrevDisabled}}/{{hymn.isNextDisabled}}">
         <!-- img ng-src="{{chat.face}}" -->

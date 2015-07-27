@@ -11,7 +11,7 @@
   </button>
 </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatarX item-icon-right" collection-repeat="hymn in hymns | filter: data.searchQuery" type="item-text-wrap" href="#/tab/old-list/{{hymn.number}}/oldList/{{hymn.isPrevDisabled}}/{{hymn.isNextDisabled}}">
+      <ion-item class="item-remove-animate item-avatarX item-icon-right" collection-repeat="hymn in hymns | filterPunctuation: data.searchQuery" type="item-text-wrap" href="#/tab/old-list/{{hymn.number}}/oldList/{{hymn.isPrevDisabled}}/{{hymn.isNextDisabled}}">
         <!-- img ng-src="{{chat.face}}" -->
         <h2><b>{{hymn.number}}. </b>{{hymn.title}}</h2>
         <!-- p>{{chat.lastText}}</p -->

@@ -39,12 +39,20 @@ angular.module('starter.controllers', ['ngCordova'])
   		}
   	}
 })
-.controller('OldList', function($scope, hymnIndexFactory) {
+.controller('OldList', function($scope, hymnIndexFactory, $ionicFilterBar) {
           $scope.data ={};
           $scope.data.searchQuery = "";
           $scope.hymns = [];
           $scope.hymns=hymnIndexFactory.allOld();
-
+					$scope.showFilterBar = function () {
+			      filterBarInstance = $ionicFilterBar.show({
+			        items: $scope.hymns,
+			        update: function (filteredItems) {
+								$scope.hymns = filteredItems;
+			        },
+			        filterProperties: ['title','body']
+			      });
+			    };
           $scope.clearSearch = function() {
 		    		$scope.data.searchQuery = "";
 		  		};
@@ -222,7 +230,7 @@ angular.module('starter.controllers', ['ngCordova'])
     if (!searchTerm || '' === searchTerm) {
       return items;
     }
-debugger;
+
     searchTerm = searchTerm.replace(/[^\w\s]|_/g, "").toLowerCase();
 
     return items.filter(function(element, index, array) {

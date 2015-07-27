@@ -124,3 +124,18 @@
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
     color: lime;
 }
+
+.searcharrow{
+	font-size: 34px;
+	color: lime;
+}
+.top-search{
+	background-color: #444;
+}
+.top-search h1{
+	color: #FFF;
+}
+.search-button{
+	color: lime;
+    opacity: 1;
+}
