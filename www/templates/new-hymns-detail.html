@@ -10,7 +10,7 @@
   <button class="button col-33 icon ion-stop" ng-click="stop()">Stop </button>
 </ion-header-bar -->
 <ion-header-bar class="bar bar-subheader">
-  <h2 class="title" style='left:0 !important; right:0 !important; color:red; font-size:46px'>{{hymn.number}}</h2>
+  <h2 class="title">{{hymn.number}}</h2>
   <button class="button icon ion-android-arrow-back" ng-hide="{{hymn.isPrevDisabled}}" ng-click="skip('prev')">{{hymn.number-1}} </button>
   <button class="button icon ion-android-arrow-forward" ng-hide="{{hymn.isNextDisabled}}" ng-click="skip('next')">{{hymn.number+1}} </button>
 </ion-header-bar>

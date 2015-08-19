@@ -244,7 +244,7 @@ angular.module('starter.controllers', ['ngCordova'])
     return items.filter(function(element, index, array) {
       var title = element.title.replace(/(<([^>]+)>)/ig, "").replace(/[^\w\s]|_/g, "").toLowerCase();
       var body = element.body.replace(/(<([^>]+)>)/ig, "").replace(/[^\w\s]|_/g, "").toLowerCase();
-      return title.includes(searchTerm) || body.includes(searchTerm);
+      return (title.indexOf(searchTerm)>-1) || (body.indexOf(searchTerm)>-1);
     });
   }
 });

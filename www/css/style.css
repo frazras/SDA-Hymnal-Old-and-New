@@ -139,3 +139,22 @@
 	color: lime;
     opacity: 1;
 }
+
+.bar-subheader .title{
+		color: red;
+    font-size: 46px !important;
+}
+
+.platform-android .bar-subheader.has-tabs-top{
+top:93px !important;
+}
+
+.platform-android .has-subheader.has-tabs-top{
+top:137px;
+}
+.platform-android .bar-subheader .title{
+left: inherit !important;
+right: inherit!important;
+margin: 0 auto;
+width: 50px;
+}
