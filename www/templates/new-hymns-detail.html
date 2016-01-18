@@ -4,13 +4,13 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<!--ion-header-bar  class="bar bar-subheader">
+<!-- ion-header-bar  class="bar bar-subheader">
   <button class="button col-33 icon ion-play" ng-click="play({{hymn.number}})">Play </button>
   <button class="button miggle col-33 icon ion-ios-pause" ng-click="pause()">Pause </button>
   <button class="button col-33 icon ion-stop" ng-click="stop()">Stop </button>
 </ion-header-bar -->
 <ion-header-bar class="bar bar-subheader">
-  <h2 class="title">{{hymn.number}}</h2>
+  <h2 id="ion-header-bar" class="title">{{hymn.number}}</h2>
   <button class="button icon ion-android-arrow-back" ng-hide="{{hymn.isPrevDisabled}}" ng-click="skip('prev')">{{hymn.number-1}} </button>
   <button class="button icon ion-android-arrow-forward" ng-hide="{{hymn.isNextDisabled}}" ng-click="skip('next')">{{hymn.number+1}} </button>
 </ion-header-bar>
@@ -20,5 +20,11 @@
     <h3 class="hymnTitle" data-fittext="1" data-fittext-max="15">{{hymn.title}}</h3>
     <p class="hymnBody"ng-bind-html="hymn.bodyTrusted">
     </p>
+  <div>
+      <!-- button class="button icon ion-heart" ng-click="like({{hymn.number}})">Like </button -->
+      <button class="button icon ion-bug" ng-click="feedback()">Report Error or Feedback</button>
+      <button class="button icon ion-cash" ng-click="donate()">Donate </button>
+  </div>
   </ion-content>
+  
 </ion-view>

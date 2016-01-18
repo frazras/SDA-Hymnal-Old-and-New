@@ -2,6 +2,7 @@
   "name": "SDANewAndOldHymnal",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.0"
+    "ionic": "driftyco/ionic-bower#1.0.0-rc.0",
+    "ionic-platform-web-client": "~0.2.1"
   }
 }

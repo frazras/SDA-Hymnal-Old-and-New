@@ -75,7 +75,7 @@ angular.module('starter.controllers', ['ngCordova'])
 		    $scope.data.searchQuery = "";
 		  };
 })
-.controller('NewHymnsDetailCtrl', function($scope, $sce, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $state, $ionicHistory,  $ionicPlatform){
+.controller('NewHymnsDetailCtrl', function($scope, $sce, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $state, $ionicHistory,  $ionicPlatform, $ionicActionSheet/*, MidiPlayer*/){
   	hymn = hymnIndexFactory.getNew($stateParams.number);
 		$scope.hymn=hymn;
 	$scope.hymn.isPrevDisabled=$stateParams.isPrevDisabled;
@@ -144,9 +144,24 @@ angular.module('starter.controllers', ['ngCordova'])
 		  var media=null;
 
      $scope.play = function(hymnNum){
-        var src_mp3 = 'https://hymnsoldandnew.s3.amazonaws.com/16bitmp3/'+('000'+hymnNum).substr(-3)+'.mp3';//http://www.stephaniequinn.com/Music/Commercial%20DEMO%20-%2013.mp3';
-        if(!media){media = new Media(src_mp3,null,null,mediaStatusCallback);}
-        media.play();
+        //var src_mp3 = 'https://hymnsoldandnew.s3.amazonaws.com/16bitmp3/'+('000'+hymnNum).substr(-3)+'.mp3';//http://www.stephaniequinn.com/Music/Commercial%20DEMO%20-%2013.mp3';
+        //var src =  cordova.file.applicationDirectory + 'www/media/midi/'+('000' + hymnNum).substr(-3)+'.mid';
+        //if(!media){media = new Media(src_mp3,null,null,mediaStatusCallback);}
+        //media.play();
+        /* MidiPlayer.setup(
+            //MidiPlayer.getPathFromAsset("demo.mid"),
+            src,
+            ["1","2","3","4","5"], 
+            function() {
+                MidiPlayer.play();
+            },
+            function(data) {
+                console.log("Error occured:", data) ;
+            },
+            function(data) {
+                console.log("Status Updates: ", data) ;
+            }
+        );*/
      }
      $scope.pause = function(){
         media.pause();
@@ -164,6 +179,136 @@ angular.module('starter.controllers', ['ngCordova'])
 						$ionicLoading.show({template: 'Loading n e ways...'});
         }
     }
+	$scope.feedback = function(){
+		window.open('http://bit.ly/1JUk9BC', '_system');
+	}
+	 // Triggered on a button click, or some other target
+	$scope.donate = function() {
+	// Show the action sheet
+	var hideSheet = $ionicActionSheet.show({
+		buttons: [
+		{ text: '<b>Monthly</b> Donation' },
+		{ text: 'One time Gift' }
+		],
+		titleText: 'You are free to leave a generous <b>donation</b> to help us with our development efforts',
+		cancelText: 'Cancel',
+		cancel: function() {
+			// add cancel code..
+			},
+		buttonClicked: function(index) {
+			console.log(index);
+			if (index == 0){
+				$scope.sub_cycle();
+			}else{
+				$scope.cycle();;
+			}
+		return true;
+		}
+	});
+	
+	};
+	
+	$scope.cycle = function() {
+	// Show the action sheet
+	var cycleSheet = $ionicActionSheet.show({
+		buttons: [
+		{ text: '$1' },
+		{ text: '$2' },
+		{ text: '$5' },
+		{ text: '$10' },
+		{ text: '$20' },
+		{ text: '$50' },
+		{ text: '$100' },
+		{ text: 'Other...' },
+		],
+		titleText: 'Choose the gift you are impressed to give',
+		cancelText: 'Cancel',
+		cancel: function() {
+			// add cancel code..
+			},
+		buttonClicked: function(index) {
+			switch(index) {
+				case 0:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GQWQ5WTYMMXKA', '_system');
+					break;
+				case 1:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UFZLBTGC5Y66', '_system');
+					break;
+				case 2:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=46YK8UZMLMMBS', '_system');
+					break;
+				case 3:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D7HEYU4RT6J9A', '_system');
+					break;
+				case 4:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RH2HJN2V7AC2', '_system');
+					break;
+				case 5:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UFGHFEUTEU6W2', '_system');
+					break;
+				case 6:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E8T22BCTS62G8', '_system');
+					break;
+				case 7:
+					window.open('http://bit.ly/1PAZqQ2', '_system');
+					break;
+			}
+		return true;
+		}
+	});
+	
+	};
+	
+	
+	$scope.sub_cycle = function() {
+	// Show the action sheet
+	var cycleSheet = $ionicActionSheet.show({
+		buttons: [
+		{ text: '$1' },
+		{ text: '$2' },
+		{ text: '$5' },
+		{ text: '$10' },
+		{ text: '$20' },
+		{ text: '$50' },
+		{ text: '$100' },
+		],
+		titleText: 'Choose the monthly recurrent gift you are impressed to give',
+		cancelText: 'Cancel',
+		cancel: function() {
+			// add cancel code..
+			},
+		buttonClicked: function(index) {
+			switch(index) {
+				case 0:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NQZ3U3QGEZKBC', '_system');
+					break;
+				case 1:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QG6FKTMKK8WFU', '_system');
+					break;
+				case 2:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APBU3ELUE8F42', '_system');
+					break;
+				case 3:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R2DRPQ47WGGWJ', '_system');
+					break;
+				case 4:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BED6UDNPG4C2C', '_system');
+					break;
+				case 5:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8A3RXGNRJEUQC', '_system');
+					break;
+				case 6:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HJDGSUTP7PY6G', '_system');
+					break;
+			}
+		return true;
+		}
+	});
+
+ };
+ 
+ 
+ 
 })
 .controller('OldHymnsDetailCtrl', function($scope, $sce, $state, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $ionicHistory, $ionicPlatform){
   	hymn = hymnIndexFactory.getOld($stateParams.number);
@@ -247,4 +392,7 @@ angular.module('starter.controllers', ['ngCordova'])
       return (title.indexOf(searchTerm)>-1) || (body.indexOf(searchTerm)>-1);
     });
   }
+}).controller(function($scope, $ionicActionSheet, $timeout) {
+
+
 });

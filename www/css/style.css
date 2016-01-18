@@ -156,5 +156,23 @@ top:137px;
 left: inherit !important;
 right: inherit!important;
 margin: 0 auto;
-width: 50px;
+width: 90px;
+}
+.platform-android ion-filter-bar.filter-bar {
+    top: 49px;
+}
+
+.platform-android #ion-content.scroll-content.ionic-scroll.has-header.has-tabs-top{
+    top: 93px !important;
+}
+
+h2#ion-header-bar{
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto;
+}
+
+#ion-footer-bar{
+    height: 0px;
+    bottom: -50px;
 }
