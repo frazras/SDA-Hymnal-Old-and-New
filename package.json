@@ -18,7 +18,8 @@
     "org.apache.cordova.file",
     "org.apache.cordova.media",
     "cordova-plugin-console",
-    "cordova-plugin-media"
+    "cordova-plugin-media",
+    "ionic-plugin-deploy"
   ],
   "cordovaPlatforms": [
     "ios"

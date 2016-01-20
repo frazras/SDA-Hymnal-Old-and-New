@@ -1,0 +1,37 @@
+<ion-view class="bar-black" view-title="Settings">
+  <ion-header-bar class="bar-black">
+    <h1 class="title">Settings</h1>
+  </ion-header-bar>
+  <ion-content id="ion-content">
+    <ion-list>
+    <!--ion-toggle  ng-model="settings.enableFriends">
+        Settings
+    </ion-toggle-->
+    <ion-item class="item-avatarX item-icon-left" type="item-text-wrap" ng-click="donate()">
+        <h2>Donate</h2><i class="icon ion-card"></i>
+    </ion-item>
+    <ion-item class="item-avatarX item-icon-left" type="item-text-wrap" ng-click="feedback()">
+        <h2>Report Problems</h2><i class="icon ion-bug"></i>
+    </ion-item>
+    <ion-item class="item-avatarX item-icon-left" type="item-text-wrap" ng-click="feedback()">
+        <h2>Send Feedback</h2><i class="icon ion-chatboxes"></i>
+    </ion-item>
+    <ion-item class="item-avatarX item-icon-left" type="item-text-wrap" ng-click="checkForUpdates()">
+        <h2>Check for updates</h2><i class="icon ion-refresh"></i>
+    </ion-item>
+    <ion-item class="item-avatarX item-icon-left" type="item-text-wrap" ng-if="hasUpdate" ng-click="doUpdate()">
+        <h2>Do Update!</h2><i class="icon ion-ios-cloud-download"></i>
+    </ion-item>
+    </ion-list>
+    <div class="card">
+  <div class="item item-text-wrap">
+    <b>Developed by:</b> Rohan A. Smith</br>
+    <b>Country:</b> Jamaica</br>
+    <b>Twitter:</b> @frazras</br>
+    <b>Contact:</b> rohan@exterbox.com</br>
+    <b>Published:</b> January 2016</br>
+    <b>Source Code: </b> <span ng-click="github()" style="color:lime; text-decoration:underline">http://github.com/frazras/SDA-Hymnal-Old-and-New</span></br>
+  </div>
+</div>
+  </ion-content>
+</ion-view>

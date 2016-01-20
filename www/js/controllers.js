@@ -1,4 +1,150 @@
 angular.module('starter.controllers', ['ngCordova'])
+.factory('global', function($ionicActionSheet, $ionicPopup) {
+    var globalService = {};
+	
+	globalService.feedback = function(){
+		window.open('http://bit.ly/1JUk9BC', '_system');
+	}
+	globalService.github = function(){
+		window.open('https://github.com/frazras/SDA-Hymnal-Old-and-New', '_system');
+	}
+	
+		// An alert dialog
+	globalService.showAlert = function(title, body) {
+	var alertPopup = $ionicPopup.alert({
+		title: title,
+		template: body
+	});
+	alertPopup.then(function(res) {
+		//alert action
+	});
+	};
+	 // Triggered on a button click, or some other target
+	globalService.donate = function() {
+	// Show the action sheet
+	var hideSheet = $ionicActionSheet.show({
+		buttons: [
+		{ text: '<b>Monthly</b> Donation' },
+		{ text: 'One time Gift' }
+		],
+		titleText: 'You are free to leave a generous <b>donation</b> to help us with our development efforts',
+		cancelText: 'Cancel',
+		cancel: function() {
+			// add cancel code..
+			},
+		buttonClicked: function(index) {
+			console.log(index);
+			if (index == 0){
+				globalService.sub_cycle();
+			}else{
+				globalService.cycle();
+			}
+		return true;
+		}
+	});
+	
+	};
+	
+	globalService.cycle = function() {
+	// Show the action sheet
+	var cycleSheet = $ionicActionSheet.show({
+		buttons: [
+		{ text: '$1' },
+		{ text: '$2' },
+		{ text: '$5' },
+		{ text: '$10' },
+		{ text: '$20' },
+		{ text: '$50' },
+		{ text: '$100' },
+		{ text: 'Other...' },
+		],
+		titleText: 'Choose the gift you are impressed to give',
+		cancelText: 'Cancel',
+		cancel: function() {
+			// add cancel code..
+			},
+		buttonClicked: function(index) {
+			switch(index) {
+				case 0:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GQWQ5WTYMMXKA', '_system');
+					break;
+				case 1:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UFZLBTGC5Y66', '_system');
+					break;
+				case 2:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=46YK8UZMLMMBS', '_system');
+					break;
+				case 3:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D7HEYU4RT6J9A', '_system');
+					break;
+				case 4:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RH2HJN2V7AC2', '_system');
+					break;
+				case 5:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UFGHFEUTEU6W2', '_system');
+					break;
+				case 6:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E8T22BCTS62G8', '_system');
+					break;
+				case 7:
+					window.open('http://bit.ly/1PAZqQ2', '_system');
+					break;
+			}
+		return true;
+		}
+	});
+	
+	};
+	
+	
+	globalService.sub_cycle = function() {
+	// Show the action sheet
+	var cycleSheet = $ionicActionSheet.show({
+		buttons: [
+		{ text: '$1' },
+		{ text: '$2' },
+		{ text: '$5' },
+		{ text: '$10' },
+		{ text: '$20' },
+		{ text: '$50' },
+		{ text: '$100' },
+		],
+		titleText: 'Choose the monthly recurrent gift you are impressed to give',
+		cancelText: 'Cancel',
+		cancel: function() {
+			// add cancel code..
+			},
+		buttonClicked: function(index) {
+			switch(index) {
+				case 0:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NQZ3U3QGEZKBC', '_system');
+					break;
+				case 1:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QG6FKTMKK8WFU', '_system');
+					break;
+				case 2:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APBU3ELUE8F42', '_system');
+					break;
+				case 3:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R2DRPQ47WGGWJ', '_system');
+					break;
+				case 4:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BED6UDNPG4C2C', '_system');
+					break;
+				case 5:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8A3RXGNRJEUQC', '_system');
+					break;
+				case 6:
+					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HJDGSUTP7PY6G', '_system');
+					break;
+			}
+		return true;
+		}
+	});
+	}
+	
+    return globalService;
+})
 .controller('OldNum', function($scope, $state) {
 	$scope.hymnNum = "";
 	$scope.numberButton = function(num) {
@@ -19,7 +165,39 @@ angular.module('starter.controllers', ['ngCordova'])
   		}
   	}
 })
+.controller('Settings', function($scope, $state, global) {
+	console.log("settings tab loaded");
+	$scope.feedback = global.feedback;
+	$scope.donate = global.donate;
+	$scope.github = global.github;
+	
+	var deploy = new Ionic.Deploy();
+  	console.log("settings tab loaded2");
+	// Update app code with new release from Ionic Deploy
+	$scope.doUpdate = function() {
+		deploy.update().then(function(res) {
+		global.showAlert('SDA Hymnal Old & New has Updated Successfully! ', res);
+		}, function(err) {
+		global.showAlert('SDA Hymnal Old & New: Update error! ', err);
+		}, function(prog) {
+		global.showAlert('SDA Hymnal Old & New: Progress... ', prog);
+		});
+	};
+	
+	// Check Ionic Deploy for new code
+	$scope.checkForUpdates = function() {
+		console.log('SDA Hymnal Old & New is Checking for updates');
+		deploy.check().then(function(hasUpdate) {
+		global.showAlert('SDA Hymnal Old & New has an Update available: ' + hasUpdate);
+		$scope.hasUpdate = hasUpdate;
+		}, function(err) {
+		global.showAlert('SDA Hymnal Old & New is Unable to check for updates', err);
+		});
+	}
+})
+	
 .controller('NewNum', function($scope, $state) {
+	console.log("newnum tab loaded");
 	$scope.hymnNum = "";
 	$scope.numberButton = function(num) {
     	if ($scope.hymnNum.length<3 && $scope.hymnNum+num<696){
@@ -75,7 +253,7 @@ angular.module('starter.controllers', ['ngCordova'])
 		    $scope.data.searchQuery = "";
 		  };
 })
-.controller('NewHymnsDetailCtrl', function($scope, $sce, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $state, $ionicHistory,  $ionicPlatform, $ionicActionSheet/*, MidiPlayer*/){
+.controller('NewHymnsDetailCtrl', function($scope, global, $sce, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $state, $ionicHistory,  $ionicPlatform/*, MidiPlayer*/){
   	hymn = hymnIndexFactory.getNew($stateParams.number);
 		$scope.hymn=hymn;
 	$scope.hymn.isPrevDisabled=$stateParams.isPrevDisabled;
@@ -179,136 +357,8 @@ angular.module('starter.controllers', ['ngCordova'])
 						$ionicLoading.show({template: 'Loading n e ways...'});
         }
     }
-	$scope.feedback = function(){
-		window.open('http://bit.ly/1JUk9BC', '_system');
-	}
-	 // Triggered on a button click, or some other target
-	$scope.donate = function() {
-	// Show the action sheet
-	var hideSheet = $ionicActionSheet.show({
-		buttons: [
-		{ text: '<b>Monthly</b> Donation' },
-		{ text: 'One time Gift' }
-		],
-		titleText: 'You are free to leave a generous <b>donation</b> to help us with our development efforts',
-		cancelText: 'Cancel',
-		cancel: function() {
-			// add cancel code..
-			},
-		buttonClicked: function(index) {
-			console.log(index);
-			if (index == 0){
-				$scope.sub_cycle();
-			}else{
-				$scope.cycle();;
-			}
-		return true;
-		}
-	});
-	
-	};
-	
-	$scope.cycle = function() {
-	// Show the action sheet
-	var cycleSheet = $ionicActionSheet.show({
-		buttons: [
-		{ text: '$1' },
-		{ text: '$2' },
-		{ text: '$5' },
-		{ text: '$10' },
-		{ text: '$20' },
-		{ text: '$50' },
-		{ text: '$100' },
-		{ text: 'Other...' },
-		],
-		titleText: 'Choose the gift you are impressed to give',
-		cancelText: 'Cancel',
-		cancel: function() {
-			// add cancel code..
-			},
-		buttonClicked: function(index) {
-			switch(index) {
-				case 0:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GQWQ5WTYMMXKA', '_system');
-					break;
-				case 1:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UFZLBTGC5Y66', '_system');
-					break;
-				case 2:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=46YK8UZMLMMBS', '_system');
-					break;
-				case 3:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D7HEYU4RT6J9A', '_system');
-					break;
-				case 4:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RH2HJN2V7AC2', '_system');
-					break;
-				case 5:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UFGHFEUTEU6W2', '_system');
-					break;
-				case 6:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E8T22BCTS62G8', '_system');
-					break;
-				case 7:
-					window.open('http://bit.ly/1PAZqQ2', '_system');
-					break;
-			}
-		return true;
-		}
-	});
-	
-	};
-	
-	
-	$scope.sub_cycle = function() {
-	// Show the action sheet
-	var cycleSheet = $ionicActionSheet.show({
-		buttons: [
-		{ text: '$1' },
-		{ text: '$2' },
-		{ text: '$5' },
-		{ text: '$10' },
-		{ text: '$20' },
-		{ text: '$50' },
-		{ text: '$100' },
-		],
-		titleText: 'Choose the monthly recurrent gift you are impressed to give',
-		cancelText: 'Cancel',
-		cancel: function() {
-			// add cancel code..
-			},
-		buttonClicked: function(index) {
-			switch(index) {
-				case 0:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NQZ3U3QGEZKBC', '_system');
-					break;
-				case 1:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QG6FKTMKK8WFU', '_system');
-					break;
-				case 2:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APBU3ELUE8F42', '_system');
-					break;
-				case 3:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R2DRPQ47WGGWJ', '_system');
-					break;
-				case 4:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BED6UDNPG4C2C', '_system');
-					break;
-				case 5:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8A3RXGNRJEUQC', '_system');
-					break;
-				case 6:
-					window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HJDGSUTP7PY6G', '_system');
-					break;
-			}
-		return true;
-		}
-	});
-
- };
- 
- 
- 
+	$scope.feedback = global.feedback;
+	$scope.donate = global.donate;
 })
 .controller('OldHymnsDetailCtrl', function($scope, $sce, $state, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $ionicHistory, $ionicPlatform){
   	hymn = hymnIndexFactory.getOld($stateParams.number);

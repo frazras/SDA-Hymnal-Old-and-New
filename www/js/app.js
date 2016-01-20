@@ -76,6 +76,17 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
         }
       }
     })
+    
+    /*Settings*/
+    .state('tab.settings', {
+      url: '/settings',
+      views: {
+        'tab-settings': {
+          templateUrl: 'templates/settings.html',
+          controller: 'Settings'
+        }
+      }
+    })
 
 /* Old Hymnal*/
 
