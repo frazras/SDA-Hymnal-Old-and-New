@@ -17,9 +17,10 @@
   "cordovaPlugins": [
     "org.apache.cordova.file",
     "org.apache.cordova.media",
-    "cordova-plugin-console",
     "cordova-plugin-media",
-    "ionic-plugin-deploy"
+    "ionic-plugin-deploy",
+    "ionic-plugin-keyboard",
+    "org.apache.cordova.inappbrowser"
   ],
   "cordovaPlatforms": [
     "ios"

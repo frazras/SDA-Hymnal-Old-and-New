@@ -166,13 +166,11 @@ angular.module('starter.controllers', ['ngCordova'])
   	}
 })
 .controller('Settings', function($scope, $state, global) {
-	console.log("settings tab loaded");
 	$scope.feedback = global.feedback;
 	$scope.donate = global.donate;
 	$scope.github = global.github;
 	
 	var deploy = new Ionic.Deploy();
-  	console.log("settings tab loaded2");
 	// Update app code with new release from Ionic Deploy
 	$scope.doUpdate = function() {
 		deploy.update().then(function(res) {
@@ -180,15 +178,19 @@ angular.module('starter.controllers', ['ngCordova'])
 		}, function(err) {
 		global.showAlert('SDA Hymnal Old & New: Update error! ', err);
 		}, function(prog) {
-		global.showAlert('SDA Hymnal Old & New: Progress... ', prog);
+		console.log('SDA Hymnal Old & New: Progress... ', prog);
 		});
 	};
 	
 	// Check Ionic Deploy for new code
 	$scope.checkForUpdates = function() {
-		console.log('SDA Hymnal Old & New is Checking for updates');
+		console.log('SDA Hymnal Old & New is Checking for updates...');
 		deploy.check().then(function(hasUpdate) {
-		global.showAlert('SDA Hymnal Old & New has an Update available: ' + hasUpdate);
+			if (hasUpdate) {
+				global.showAlert('SDA Hymnal Old & New has an Update available');
+			}else{
+				global.showAlert('There are no updates available for SDA Hymnal Old & New');
+			}
 		$scope.hasUpdate = hasUpdate;
 		}, function(err) {
 		global.showAlert('SDA Hymnal Old & New is Unable to check for updates', err);
