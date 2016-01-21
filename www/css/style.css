@@ -122,7 +122,8 @@
 }
 
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
-    color: lime;
+    color: lime !important;
+        border-color: lime;
 }
 
 .searcharrow{
