@@ -53,6 +53,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
   })
   .state('tab.new-num-detail', {
       url: '/new-num/:number/:version/:isPrevDisabled/:isNextDisabled',
+      cache:false,
       views: {
         'tab-new-num': {
           templateUrl: 'templates/new-hymns-detail.html',
@@ -72,6 +73,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
     })
     .state('tab.new-list-detail', {
       url: '/new-list/:number/:version/:isPrevDisabled/:isNextDisabled',
+      cache:false,
       views: {
         'tab-new-list': {
           templateUrl: 'templates/new-hymns-detail.html',
@@ -104,6 +106,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
 })
 .state('tab.old-num-detail', {
     url: '/old-num/:number/:version/:isPrevDisabled/:isNextDisabled',
+    cache:false,
     views: {
       'tab-old-num': {
         templateUrl: 'templates/old-hymns-detail.html',
@@ -123,6 +126,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytic
   })
   .state('tab.old-list-detail', {
     url: '/old-list/:number/:version/:isPrevDisabled/:isNextDisabled',
+    cache:false,
     views: {
       'tab-old-list': {
         templateUrl: 'templates/old-hymns-detail.html',

@@ -1,5 +1,5 @@
 angular.module('starter.controllers', ['ngCordova'])
-.factory('global', function($ionicActionSheet, $ionicPopup) {
+.factory('global', function($state, $ionicHistory, $ionicActionSheet, $ionicPopup, $stateParams, hymnIndexFactory) {
     var globalService = {};
 	
 	globalService.feedback = function(){
@@ -143,6 +143,59 @@ angular.module('starter.controllers', ['ngCordova'])
 	});
 	}
 	
+	globalService.skip = function(nextPrev) {
+		var hymnum = parseInt($stateParams.number,10);
+		if(nextPrev=='next'){
+			hymnum+=1;
+		}else if(nextPrev=='prev'){
+			hymnum-=1;
+		}
+		hymn = hymnIndexFactory.getOld(hymnum);
+		$ionicHistory.currentView($ionicHistory.backView());
+
+		if (hymn.number<2){
+			hymn.isPrevDisabled="true";
+			hymn.isNextDisabled="false";
+		}else if(hymn.number>702 && ($stateParams.version=='oldList' || $stateParams.version == 'oldNum')){
+			hymn.isPrevDisabled="false";
+			hymn.isNextDisabled="true";
+		}else if(hymn.number>694 && ($stateParams.version=='newList' || $stateParams.version == 'newNum')){
+			hymn.isPrevDisabled="false";
+			hymn.isNextDisabled="true";
+		}else{
+			hymn.isPrevDisabled="false";
+			hymn.isNextDisabled="false";
+		}
+ 
+		switch($stateParams.version) {
+	    case "oldNum":
+			hymn.isPrevDisabled;
+			hymn.isNextDisabled;
+					$state.go('tab.old-num-detail',
+										{cache: false, "number":hymn.number, "version":"oldNum", "isPrevDisabled":hymn.isPrevDisabled, "isNextDisabled":hymn.isNextDisabled},
+										{location: 'replace'});
+	        break;
+	    case "newNum":
+					$state.go('tab.new-num-detail',
+										{cache: false, "number":hymn.number, "version":"newNum", "isPrevDisabled":hymn.isPrevDisabled, "isNextDisabled":hymn.isNextDisabled},
+										{location: 'replace'});
+	        break;
+			case "oldList":
+					$state.go('tab.old-list-detail',
+										{cache: false, "number":hymn.number, "version":"oldList", "isPrevDisabled":hymn.isPrevDisabled, "isNextDisabled":hymn.isNextDisabled},
+										{location: 'replace'});
+	        break;
+			case "newList":
+					$state.go('tab.new-list-detail',
+										{cache: false, "number":hymn.number, "version":"newList", "isPrevDisabled":hymn.isPrevDisabled, "isNextDisabled":hymn.isNextDisabled},
+										{location: 'replace'});
+					break;
+	    default:
+	        //default code block
+			}
+
+	}
+	
     return globalService;
 })
 .controller('OldNum', function($scope, $state) {
@@ -255,9 +308,9 @@ angular.module('starter.controllers', ['ngCordova'])
 		    $scope.data.searchQuery = "";
 		  };
 })
-.controller('NewHymnsDetailCtrl', function($scope, global, $sce, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $state, $ionicHistory,  $ionicPlatform/*, MidiPlayer*/){
-  	hymn = hymnIndexFactory.getNew($stateParams.number);
-		$scope.hymn=hymn;
+.controller('NewHymnsDetailCtrl', function($scope, global, $sce, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $state, $ionicHistory, $timeout, $ionicPlatform){
+	var hymn = hymnIndexFactory.getNew($stateParams.number);
+	$scope.hymn=hymn;
 	$scope.hymn.isPrevDisabled=$stateParams.isPrevDisabled;
 	$scope.hymn.isNextDisabled=$stateParams.isNextDisabled;
 	if($scope.hymn.number==1){
@@ -268,62 +321,18 @@ angular.module('starter.controllers', ['ngCordova'])
    	if(hymn.body.constructor.name!="TrustedValueHolderType"){
   		$scope.hymn.bodyTrusted = $sce.trustAsHtml(hymn.body);
 	}
-	$scope.skip = function(nextPrev) {
-		if(nextPrev=='next'){
-			$scope.hymn.number+=1;
-		}else if(nextPrev=='prev'){
-			$scope.hymn.number-=1;
-		}
-
-		$ionicHistory.currentView($ionicHistory.backView());
-
-		if ($scope.hymn.number<2){
-			$scope.hymn.isPrevDisabled="true";
-			$scope.hymn.isNextDisabled="false";
-		}else if($scope.hymn.number>702 && ($stateParams.version=='oldList' || $stateParams.version == 'oldNum')){
-			$scope.hymn.isPrevDisabled="false";
-			$scope.hymn.isNextDisabled="true";
-		}else if($scope.hymn.number>694 && ($stateParams.version=='newList' || $stateParams.version == 'newNum')){
-			$scope.hymn.isPrevDisabled="false";
-			$scope.hymn.isNextDisabled="true";
-		}else{
-			$scope.hymn.isPrevDisabled="false";
-			$scope.hymn.isNextDisabled="false";
-		}
-
-
-			switch($stateParams.version) {
-			case "oldNum":
-			$scope.hymn.isPrevDisabled;
-			$scope.hymn.isNextDisabled;
-					$state.go('tab.old-num-detail',
-										{"number":$scope.hymn.number, "version":"oldNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
-										{location: 'replace'});
-					break;
-			case "newNum":
-					$state.go('tab.new-num-detail',
-										{"number":$scope.hymn.number, "version":"newNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
-										{location: 'replace'});
-					break;
-			case "oldList":
-					$state.go('tab.old-list-detail',{"number":$scope.hymn.number, "version":"oldList"},{location: 'replace'});
-					break;
-			case "newList":
-					$state.go('tab.new-list-detail',{"number":$scope.hymn.number, "version":"newList"},{location: 'replace'});
-					break;
-			default:
-					//default code block
-			}
-
-	}
-	 //$scope.play = function(hymnNum) {
+	$scope.skip = global.skip;
+	$scope.feedback = global.feedback;
+	$scope.donate = global.donate;
+	
+		/* //$scope.play = function(hymnNum) {
     	//var src =  cordova.file.applicationDirectory + 'www/media/midi/'+('000' + hymnNum).substr(-3)+'.mid';
 
     	//var src_mid ="http://173.230.135.45/uploads/001.mid";
       //MidiPlayer.setup(src.substring(7), Array.apply(null, Array(120)).map(function (_, i) {return i;}), null, mediaStatusCallback);
 		  var media=null;
 
-     $scope.play = function(hymnNum){
+     $scope.play = function(hymnNum){*/
         //var src_mp3 = 'https://hymnsoldandnew.s3.amazonaws.com/16bitmp3/'+('000'+hymnNum).substr(-3)+'.mp3';//http://www.stephaniequinn.com/Music/Commercial%20DEMO%20-%2013.mp3';
         //var src =  cordova.file.applicationDirectory + 'www/media/midi/'+('000' + hymnNum).substr(-3)+'.mid';
         //if(!media){media = new Media(src_mp3,null,null,mediaStatusCallback);}
@@ -341,7 +350,7 @@ angular.module('starter.controllers', ['ngCordova'])
             function(data) {
                 console.log("Status Updates: ", data) ;
             }
-        );*/
+        );
      }
      $scope.pause = function(){
         media.pause();
@@ -358,11 +367,10 @@ angular.module('starter.controllers', ['ngCordova'])
             $ionicLoading.hide();
 						$ionicLoading.show({template: 'Loading n e ways...'});
         }
-    }
-	$scope.feedback = global.feedback;
-	$scope.donate = global.donate;
+    }*/
+	
 })
-.controller('OldHymnsDetailCtrl', function($scope, $sce, $state, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $ionicHistory, $ionicPlatform){
+.controller('OldHymnsDetailCtrl', function($scope, $sce, $state, $stateParams, hymnIndexFactory, $cordovaMedia, $ionicLoading, $ionicHistory, $ionicPlatform, global){
   	hymn = hymnIndexFactory.getOld($stateParams.number);
    	$scope.hymn=hymn;
 		$scope.hymn.isPrevDisabled=$stateParams.isPrevDisabled;
@@ -376,58 +384,9 @@ angular.module('starter.controllers', ['ngCordova'])
   		$scope.hymn.bodyTrusted = $sce.trustAsHtml(hymn.body);
 		}
 
-	$scope.skip = function(nextPrev) {
-		if(nextPrev=='next'){
-			$scope.hymn.number+=1;
-		}else if(nextPrev=='prev'){
-			$scope.hymn.number-=1;
-		}
-
-		$ionicHistory.currentView($ionicHistory.backView());
-
-		if ($scope.hymn.number<2){
-			$scope.hymn.isPrevDisabled="true";
-			$scope.hymn.isNextDisabled="false";
-		}else if($scope.hymn.number>702 && ($stateParams.version=='oldList' || $stateParams.version == 'oldNum')){
-			$scope.hymn.isPrevDisabled="false";
-			$scope.hymn.isNextDisabled="true";
-		}else if($scope.hymn.number>694 && ($stateParams.version=='newList' || $stateParams.version == 'newNum')){
-			$scope.hymn.isPrevDisabled="false";
-			$scope.hymn.isNextDisabled="true";
-		}else{
-			$scope.hymn.isPrevDisabled="false";
-			$scope.hymn.isNextDisabled="false";
-		}
-
-
-			switch($stateParams.version) {
-	    case "oldNum":
-			$scope.hymn.isPrevDisabled;
-			$scope.hymn.isNextDisabled;
-					$state.go('tab.old-num-detail',
-										{cache: false, "number":$scope.hymn.number, "version":"oldNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
-										{location: 'replace'});
-	        break;
-	    case "newNum":
-					$state.go('tab.new-num-detail',
-										{cache: false, "number":$scope.hymn.number, "version":"newNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
-										{location: 'replace'});
-	        break;
-			case "oldList":
-					$state.go('tab.old-list-detail',
-										{cache: false, "number":$scope.hymn.number, "version":"oldList", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
-										{location: 'replace', reload:true});
-	        break;
-			case "newList":
-					$state.go('tab.new-list-detail',
-										{cache: false, "number":$scope.hymn.number, "version":"newList", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
-										{location: 'replace'});
-					break;
-	    default:
-	        //default code block
-			}
-
-	}
+	$scope.skip = global.skip;
+	$scope.feedback = global.feedback;
+	$scope.donate = global.donate;
 })
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
