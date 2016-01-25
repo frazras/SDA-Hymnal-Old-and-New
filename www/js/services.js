@@ -7015,12 +7015,18 @@ var oldHymns = [
       index.splice(index.indexOf(index), 1);
     },
     getNew: function(indexId) {
-      arIndex = parseInt(indexId)-1;
-      return hymns[arIndex];
+      var hymnNum = parseInt(indexId);
+      var obj = hymns.filter(function ( obj ) {
+          return obj.number === hymnNum;
+      })[0];
+      return obj;
     },
     getOld: function(indexId) {
-      arIndex = parseInt(indexId)-1;
-      return oldHymns[arIndex];
+     var hymnNum = parseInt(indexId);
+      var obj = oldHymns.filter(function ( obj ) {
+          return obj.number === hymnNum;
+      })[0];
+      return obj;
     }
   };
 });

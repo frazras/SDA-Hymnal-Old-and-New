@@ -405,19 +405,23 @@ angular.module('starter.controllers', ['ngCordova'])
 			$scope.hymn.isPrevDisabled;
 			$scope.hymn.isNextDisabled;
 					$state.go('tab.old-num-detail',
-										{"number":$scope.hymn.number, "version":"oldNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
+										{cache: false, "number":$scope.hymn.number, "version":"oldNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
 										{location: 'replace'});
 	        break;
 	    case "newNum":
 					$state.go('tab.new-num-detail',
-										{"number":$scope.hymn.number, "version":"newNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
+										{cache: false, "number":$scope.hymn.number, "version":"newNum", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
 										{location: 'replace'});
 	        break;
 			case "oldList":
-					$state.go('tab.old-list-detail',{"number":$scope.hymn.number, "version":"oldList"},{location: 'replace'});
+					$state.go('tab.old-list-detail',
+										{cache: false, "number":$scope.hymn.number, "version":"oldList", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
+										{location: 'replace', reload:true});
 	        break;
 			case "newList":
-					$state.go('tab.new-list-detail',{"number":$scope.hymn.number, "version":"newList"},{location: 'replace'});
+					$state.go('tab.new-list-detail',
+										{cache: false, "number":$scope.hymn.number, "version":"newList", "isPrevDisabled":$scope.hymn.isPrevDisabled, "isNextDisabled":$scope.hymn.isNextDisabled},
+										{location: 'replace'});
 					break;
 	    default:
 	        //default code block
