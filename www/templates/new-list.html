@@ -5,7 +5,7 @@
         <button class="button button-icon ion-android-search search-button" ng-click="showFilterBar()"></button>
     </div>
   </ion-header-bar>
-  <ion-content id="ion-content">
+  <ion-content id="ion-content" overflow-scroll="false">
     <ion-list>
       <ion-item class="item-remove-animate item-avatarX item-icon-right" collection-repeat="hymn in hymns | filterPunctuation: data.searchQuery" type="item-text-wrap" href="#/tab/new-list/{{hymn.number}}/newList/{{hymn.isPrevDisabled}}/{{hymn.isNextDisabled}}">
         <!-- img ng-src="{{chat.face}}" -->
