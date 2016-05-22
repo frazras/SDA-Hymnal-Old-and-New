@@ -1,0 +1,22 @@
+.ion_index_list_outer .list {
+    padding-right: 0;
+}
+
+.ion_index_list_outer .item {
+    border-right: none;
+}
+
+.ion_index_sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+}
+
+.ion_index_sidebar li {
+    line-height: 1.1;
+    text-align: center;
+    position: relative;
+    right: 50%;
+    background-color: white;
+}

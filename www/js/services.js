@@ -7027,6 +7027,32 @@ var oldHymns = [
           return obj.number === hymnNum;
       })[0];
       return obj;
+    },
+    insplice: function(){
+        var tmp={};
+        for(i=0;i<hymns.length;i++){
+          var index=hymns[i].first_name.toUpperCase().charAt(0);
+          if( tmp[ letter] ==undefined){
+            tmp[ letter]=[]
+          }
+            tmp[ letter].push( users[i] );
+        }
+        $scope.sorted_users = tmp;
+      
+        //Click letter event
+        $scope.gotoList = function(id){
+          $location.hash(id);
+          $ionicScrollDelegate.anchorScroll();
+        }
+
+      hymns.forEach(function(item, index){
+        if(item.number%100==0){
+          hymns[i] = obj.value;
+        }
+        hymns[index].push( item.number );
+        return rObj;
+      });
+      return indexed_hymns;
     }
   };
 });

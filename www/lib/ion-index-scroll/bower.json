@@ -1,0 +1,28 @@
+{
+  "name": "ion-index-scroll",
+  "version": "0.1.4",
+  "authors": [
+    "aquint <anthonyquinton92@gmail.com>",
+    "Bill Santo"
+  ],
+  "description": "Alphanumeric indexing and scrolling for ionic lists",
+  "main": "./src/ion-index-scroll.js",
+  "keywords": [
+    "ionic",
+    "ion",
+    "angular",
+    "alphabetical",
+    "alphabet",
+    "scrolling",
+    "index"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "demo.gif"
+  ]
+}
