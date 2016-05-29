@@ -1,4 +1,26 @@
-	.hymn-keyboard .myButton{
+@font-face {
+    font-family: 'fontawesome';
+    src:url('../fonts/fontawesome-webfont.eot');
+    src:url('../fonts/fontawesome-webfont.eot') format('embedded-opentype'),
+        url('../fonts/fontawesome-webfont.woff') format('woff'),
+        url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+        url('../fonts/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-font-size:before {
+    font-family: "fontawesome";
+    content: "\f034";
+}
+.icon-font-size.small{
+    font-size: 15px;
+}
+.icon-font-size.big{
+    font-size: 30px;
+}
+
+.hymn-keyboard .myButton{
 	height: 110px;
 	margin: 5px;
 	font-size: 40px;
