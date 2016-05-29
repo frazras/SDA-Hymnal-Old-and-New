@@ -18,7 +18,10 @@
     "cordova-plugin-media",
     "ionic-plugin-deploy",
     "ionic-plugin-keyboard",
-    "org.apache.cordova.inappbrowser"
+    "org.apache.cordova.inappbrowser",
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen"
   ],
   "cordovaPlatforms": [
     "ios"

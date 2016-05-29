@@ -1,4 +1,11 @@
 {
   "name": "SDANewAndOldHymnal",
-  "app_id": "34ffb9cd"
+  "app_id": "34ffb9cd",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }
