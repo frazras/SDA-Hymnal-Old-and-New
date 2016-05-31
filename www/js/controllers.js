@@ -1,6 +1,32 @@
 angular.module('starter.controllers', ['ngCordova'])
-.factory('global', function($state, $ionicHistory, $ionicActionSheet, $ionicPopup, $stateParams, hymnIndexFactory) {
+.factory('global', function($state, $ionicHistory, $ionicActionSheet, $ionicPopup, $stateParams, hymnIndexFactory, $rootScope, $ionicSettings) {
     var globalService = {};
+	
+	$rootScope.$on($ionicSettings.changed, function($event, changedSetting) {
+        console.log(changedSetting.key + ' -> ' + changedSetting.value);
+		if(changedSetting.key=='font'){
+			angular.element(document).find('p').css('font-size','1.'+changedSetting.value+'em');
+			angular.element(document).find('p').css('line-height','1.0'+changedSetting.value+'em');	
+		}
+    });
+	
+	$ionicSettings.init({
+        /*awesomeSelection: {
+            type: 'selection',
+            values: ['one', 'two', 'three'],
+            label: 'Awesome Selection',
+            value: 'two'
+        },*/
+        font: {
+			type: 'range',
+			label: 'Font Size',
+			iconLeft: 'icon-font-size small',
+			iconRight: 'icon-font-size big',
+			min: 1,
+			max: 9,
+			value: 5
+    	},
+    });
 	
 	globalService.feedback = function(){
 		window.open('http://bit.ly/1JUk9BC', '_system');
@@ -8,6 +34,15 @@ angular.module('starter.controllers', ['ngCordova'])
 	globalService.github = function(){
 		window.open('https://github.com/frazras/SDA-Hymnal-Old-and-New', '_system');
 	}
+	globalService.set = function(key, value) {
+        $ionicSettings.set(key, value);
+    };
+    globalService.get = function(key) {
+       return $ionicSettings.get(key);
+    };
+	globalService.getData = function() {
+        return $ionicSettings.getData();
+    };
 	
 		// An alert dialog
 	globalService.showAlert = function(title, body) {
@@ -218,10 +253,13 @@ angular.module('starter.controllers', ['ngCordova'])
   		}
   	}
 })
-.controller('Settings', function($scope, $state, global) {
+.controller('Settings', function($scope, $state, global, $ionicSettings) {
+
 	$scope.feedback = global.feedback;
 	$scope.donate = global.donate;
 	$scope.github = global.github;
+	$scope.get = global.get;
+	$scope.set = global.set;
 	
 	var deploy = new Ionic.Deploy();
 	// Update app code with new release from Ionic Deploy
@@ -249,6 +287,18 @@ angular.module('starter.controllers', ['ngCordova'])
 		global.showAlert('SDA Hymnal Old & New is Unable to check for updates', err);
 		});
 	}
+	$scope.data = { 'size' : '1' };
+	$scope.fontSize = function(newsize) {
+		 debugger;
+		angular.element(document).find('p').css('font-size','1.'+$scope.data.size+'em');
+		angular.element(document).find('p').css('line-height','1.'+$scope.data.size+'em');
+		//global.showAlert('boomy');
+	};
+	
+	
+	//console.log($ionicSettings.get(myRange));
+	//$scope.fontSize($scope.get(myRange));
+	
 })
 	
 .controller('NewNum', function($scope, $state) {
@@ -324,7 +374,15 @@ angular.module('starter.controllers', ['ngCordova'])
 	$scope.skip = global.skip;
 	$scope.feedback = global.feedback;
 	$scope.donate = global.donate;
+	$scope.getData = global.getData;
 	
+	angular.element(document).ready(function () {
+	global.getData();
+		 //console.log(global.get('font'));
+		angular.element(document).find('p').css('font-size','1.'+global.get('font')+'em');
+		angular.element(document).find('p').css('line-height','1.'+global.get('font')+'em');	
+	 
+	});
 		/* //$scope.play = function(hymnNum) {
     	//var src =  cordova.file.applicationDirectory + 'www/media/midi/'+('000' + hymnNum).substr(-3)+'.mid';
 

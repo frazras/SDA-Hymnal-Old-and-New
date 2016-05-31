@@ -13,10 +13,10 @@
     font-family: "fontawesome";
     content: "\f034";
 }
-.icon-font-size.small{
+.icon-font-size.small, .icon-font-size.small:before{
     font-size: 15px;
 }
-.icon-font-size.big{
+.icon-font-size.big, .icon-font-size.big:before{
     font-size: 30px;
 }
 
