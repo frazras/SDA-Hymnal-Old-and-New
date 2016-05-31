@@ -21,7 +21,8 @@
     "org.apache.cordova.inappbrowser",
     "cordova-plugin-crosswalk-webview",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-app-preferences"
   ],
   "cordovaPlatforms": [
     "ios"

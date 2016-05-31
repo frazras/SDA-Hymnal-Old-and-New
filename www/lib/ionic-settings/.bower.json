@@ -1,0 +1,39 @@
+{
+  "name": "ionic-settings",
+  "homepage": "https://github.com/ivandroid/ionic-settings",
+  "version": "1.0.2",
+  "authors": [
+    {
+      "name": "Ivan Weber",
+      "email": "ivan.weber@gmx.de"
+    }
+  ],
+  "license": "MIT",
+  "main": [
+    "dist/ionic-settings.min.js",
+    "dist/ionic-settings.min.css"
+  ],
+  "ignore": [
+    "src",
+    "test",
+    "gulpfile.js",
+    "karma-*.conf.js",
+    "**/.*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular-mocks": ">=1.2.0",
+    "angular-scenario": ">=1.2.0",
+    "angular": ">=1.2.0"
+  },
+  "_release": "1.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.2",
+    "commit": "31703f84d381016a6cc88156d8c089bd9bbcae23"
+  },
+  "_source": "https://github.com/ivandroid/ionic-settings.git",
+  "_target": "^1.0.2",
+  "_originalSource": "ionic-settings",
+  "_direct": true
+}
