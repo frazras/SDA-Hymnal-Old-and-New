@@ -7,20 +7,16 @@
   </ion-header-bar>
   <ion-content id="ion-content" overflow-scroll="false">
     <ion-list>
-      <div data-ng-repeat="(number_index, number) in hymn" class="index_list">
-      <ion-item class="item item-divider" id="index_{{number_index}}">
-        {{number_index}}
-      </ion-item>
       <ion-item class="item-remove-animate item-avatarX item-icon-right" collection-repeat="hymn in hymns | filterPunctuation: data.searchQuery" type="item-text-wrap" href="#/tab/new-list/{{hymn.number}}/newList/{{hymn.isPrevDisabled}}/{{hymn.isNextDisabled}}">
+        <!-- img ng-src="{{chat.face}}" -->
         <h2><b>{{hymn.number}}. </b>{{hymn.title}}</h2>
+        <!-- p>{{chat.lastText}}</p -->
         <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <!-- ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button-->
       </ion-item>
-      </div>
     </ion-list>
   </ion-content>
-  <ul class="alpha_sidebar">
-      <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet"> 
-          {{letter}}
-      </li>
-    </ul>
 </ion-view>
